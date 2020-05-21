@@ -23,6 +23,16 @@ class App extends Component {
     })
   }
 
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        {name: 'Rohan', age: 21},
+        {name: event.target.value, age: 18},
+        {name: 'Sneh', age: 18}
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -35,6 +45,7 @@ class App extends Component {
         />
         <Person 
           click = { this.switchNameHandler.bind(this, 'Rony') }
+          changed = { this.nameChangedHandler }
           name = { this.state.persons[1].name } 
           age = { this.state.persons[1].age }>
             I want to join INA.
