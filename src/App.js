@@ -1,21 +1,21 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
 import './App.css';
 
 import Person from './Person/Person'
 
 const app = props => {
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [personsState, setPersonsState] = useState({
     persons: [
       {name: 'Rohan', age: 21},
       {name: 'Sneh', age: 18},
       {name: 'Kevin', age: 17}
-    ],
-    otherSate: 'Some Other Value' 
+    ] 
   });
 
-  console.log(personsState)
+  const [otherState, ] = useState("Some Other Value")
+
+  console.log(personsState, otherState)
 
   const switchNameHandler = () => {
     setPersonsState({
@@ -23,8 +23,7 @@ const app = props => {
         {name: 'Rohan Borakhatariya', age: 21},
         {name: 'Kevin', age: 18},
         {name: 'Sneh', age: 18}
-      ],
-      otherSate: personsState.otherSate
+      ]
     })
   }
 
