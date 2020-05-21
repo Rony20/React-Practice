@@ -1,42 +1,43 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Person from './Person/Person'
 
-class App extends Component {
+const app = props => {
 
-  state = {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [personsState, setPersonsState] = useState({
     persons: [
       {name: 'Rohan', age: 21},
       {name: 'Sneh', age: 18},
       {name: 'Kevin', age: 17}
-    ]
-  }
+    ],
+    otherSate: 'Some Other Value' 
+  });
 
-  switchNameHandler = () => {
-    console.log("Was Clicked")
-    this.setState({
+  console.log(personsState)
+
+  const switchNameHandler = () => {
+    setPersonsState({
       persons: [
         {name: 'Rohan Borakhatariya', age: 21},
         {name: 'Kevin', age: 18},
         {name: 'Sneh', age: 18}
-      ]
+      ],
+      otherSate: personsState.otherSate
     })
   }
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Hello World !</h1>
-        <p>This is working !</p>
-        <button onClick={this.switchNameHandler}> Switch Name</button>
-        <Person name={ this.state.persons[0].name } age={ this.state.persons[0].age }/>
-        <Person name={ this.state.persons[1].name } age={ this.state.persons[1].age }>I want to join INA.</Person>
-        <Person name={ this.state.persons[2].name } age={ this.state.persons[2].age }/>
-      </div>
-    );
-    // return React.createElement('div', {className: 'App'}, React.createElement('header', {className: 'App-header'}, 'Hello World !!'))
-  }
+  return (
+    <div className="App">
+      <h1>Hello World !</h1>
+      <p>This is working !</p>
+      <button onClick={switchNameHandler}> Switch Name</button>
+      <Person name={ personsState.persons[0].name } age={ personsState.persons[0].age }/>
+      <Person name={ personsState.persons[1].name } age={ personsState.persons[1].age }>I want to join INA.</Person>
+      <Person name={ personsState.persons[2].name } age={ personsState.persons[2].age }/>
+    </div>
+  );
 }
 
-export default App;
+export default app;
