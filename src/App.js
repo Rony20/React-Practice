@@ -10,7 +10,8 @@ class App extends Component {
       {name: 'Rohan', age: 21},
       {name: 'Kevin', age: 18},
       {name: 'Sneh', age: 17}
-    ]
+    ],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -33,6 +34,11 @@ class App extends Component {
     })
   }
 
+  togglePersonHandler = () => {
+    let tempShowPerson = this.state.showPersons
+    this.setState({ showPersons: !tempShowPerson })
+  }
+
   render() {
 
     const style = {
@@ -49,25 +55,29 @@ class App extends Component {
         <p>This is working !</p>
         <button 
           style = { style }
-          onClick={ () => this.switchNameHandler('Rohan Borakhatariya') }
+          onClick={ this.togglePersonHandler }
         > 
             Switch Name
         </button>
-        <Person 
-          name = { this.state.persons[0].name } 
-          age = { this.state.persons[0].age }
-        />
-        <Person 
-          click = { this.switchNameHandler.bind(this, 'Rony') }
-          changed = { this.nameChangedHandler }
-          name = { this.state.persons[1].name } 
-          age = { this.state.persons[1].age }>
-            I want to join INA.
-        </Person>
-        <Person 
-          name = { this.state.persons[2].name }
-          age = { this.state.persons[2].age }
-        />
+        {this.state.showPersons ?
+          <div>
+            <Person 
+              name = { this.state.persons[0].name } 
+              age = { this.state.persons[0].age }
+            />
+            <Person 
+              click = { this.switchNameHandler.bind(this, 'Rony') }
+              changed = { this.nameChangedHandler }
+              name = { this.state.persons[1].name } 
+              age = { this.state.persons[1].age }>
+                I want to join INA.
+            </Person>
+            <Person 
+              name = { this.state.persons[2].name }
+              age = { this.state.persons[2].age }
+            />
+          </div> : null
+        }
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('header', {className: 'App-header'}, 'Hello World !!'))
