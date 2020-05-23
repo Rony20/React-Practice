@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     let persons = null;
 
-    let btnClass = [classes.Button];
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -61,7 +61,7 @@ class App extends Component {
           })}
         </div>
       );
-      btnClass.push(classes.Red)
+      btnClass = classes.Red
     }
 
     let assignedClasses = [];
@@ -78,7 +78,7 @@ class App extends Component {
         <h1>Hello World !</h1>
         <p className={assignedClasses.join(" ")}>This is working !</p>
         <button
-          className={btnClass.join(" ")}
+          className={btnClass}
           onClick={this.togglePersonHandler}
         >
           Toggle Names
