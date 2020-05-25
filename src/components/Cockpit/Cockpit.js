@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import classes from "./Cockpit.module.css";
 
 import AuthContext from "../../context/auth-context";
 
 const cockpit = (props) => {
+  const authContext = useContext(AuthContext);
+
   useEffect(() => {
     console.log("[Cockpit.js] useEffect");
     setTimeout(() => alert("Save data to cloud !"), 1000);
@@ -38,9 +40,7 @@ const cockpit = (props) => {
       <button className={btnClass} onClick={props.clicked}>
         Toggle Names
       </button>
-      <AuthContext.Consumer>
-        {(context) => <button onClick={context.login}>Log in</button> }
-      </AuthContext.Consumer>
+      <button onClick={authContext.login}>Log in</button>
     </div>
   );
 };
